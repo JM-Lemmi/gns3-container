@@ -1,5 +1,7 @@
 FROM gns3/ipterm-base
 
+COPY --chmod=755 docker-start.sh /root/docker-start.sh
+
 RUN set -e -x \
     && export DEBIAN_FRONTEND=noninteractive \
     && apt-get update \
@@ -8,4 +10,5 @@ RUN set -e -x \
 
 VOLUME /etc/iptables
 
-CMD /bin/bash -l
+CMD /bin/bash
+ENTRYPOINT /root/docker-start.sh
